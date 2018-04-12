@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
+  animation-name: example;
+  animation-duration: 4s;
+  animation-delay: 2s;
+}
+
+div {
+  background-color: darkgoldenrod;
+}
+
+@keyframes example {
+  0%   {background-color:red; width: 100px;}
+  25%  {background-color:yellow; width: 230px;}
+  50%  {background-color:blue; width: 360px;}
+  75%  {background-color:green; width: 230px;}
+  100% {background-color:red; width: 100px;}
+}
