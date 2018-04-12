@@ -34,17 +34,17 @@ button {
 
 .anim {
   -webkit-animation-name: example;
-  -webkit-animation-duration: 4s;
+  -webkit-animation-duration: 3s;
   animation-name: example;
-  animation-duration: 4s;
+  animation-duration: 3s;
 }
 
 @keyframes example {
   0% {
     background-color: red;
+    width: 300px;
   }
   100% {
     background-color: red;
-    width: 300px;
   }
 }

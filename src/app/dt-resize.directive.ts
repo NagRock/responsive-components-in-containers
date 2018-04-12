@@ -50,8 +50,8 @@ export class DtResizeDirective implements OnInit, OnDestroy {
     const subscription = this.windowResizeService.getResize()
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
-        console.log('Window Resize');
-        console.log('Emit from Window Resize');
+        // console.log('Window Resize');
+        // console.log('Emit from Window Resize');
         this.emitEvent();
       });
     this.subscriptions.add(subscription);
@@ -61,9 +61,9 @@ export class DtResizeDirective implements OnInit, OnDestroy {
     const subscription = this.documentAnimationEventService.getAnimationChanged()
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
-        console.log('Animation');
+        // console.log('Animation');
         if (this.hasSizeChanged()) {
-          console.log('Emit from Animation');
+          // console.log('Emit from Animation');
           this.emitEvent();
         }
       });
@@ -74,9 +74,9 @@ export class DtResizeDirective implements OnInit, OnDestroy {
     const subscription = this.documentTransitionEventService.getTransitionChanged()
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
-        console.log('Transition');
+        // console.log('Transition');
         if (this.hasSizeChanged()) {
-          console.log('Emit from Transition');
+          // console.log('Emit from Transition');
           this.emitEvent();
         }
       });
@@ -87,9 +87,9 @@ export class DtResizeDirective implements OnInit, OnDestroy {
     const ngZoneStableSubscription = this.ngZone.onStable
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
-        console.log('Zone');
+        // console.log('Zone');
         if (this.hasSizeChanged()) {
-          console.log('Emit from Zone');
+          // console.log('Emit from Zone');
           this.emitEvent();
         }
       });

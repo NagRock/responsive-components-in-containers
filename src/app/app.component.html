@@ -4,6 +4,6 @@
 <div class="mainContainer">
   <div class="leftContainer" [class.leftContainerHidden]="!menuVisible">Menu</div>
   <div class="rightContainer" [class.rightContainerHidden]="!menuVisible">
-    <app-sample-component [class.anim]="anim"></app-sample-component>
+    <app-sample-component *ngFor="let item of items" [class.anim]="anim"></app-sample-component>
   </div>
 </div>

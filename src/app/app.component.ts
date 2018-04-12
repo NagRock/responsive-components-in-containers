@@ -9,6 +9,7 @@ import {TimerObservable} from 'rxjs/observable/TimerObservable';
 export class AppComponent {
   public anim = false;
   public menuVisible = true;
+  public items = Array(10);
 
   public startAnim() {
     this.anim = false;
