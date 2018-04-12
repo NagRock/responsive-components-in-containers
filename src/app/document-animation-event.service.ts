@@ -20,7 +20,7 @@ export class DocumentAnimationEventService {
       });
   }
 
-  public getAnimationEnded(): Observable<void> {
+  public getAnimationChanged(): Observable<void> {
     return this.animationEventSubject.asObservable();
   }
 }

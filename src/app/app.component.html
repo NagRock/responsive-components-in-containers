@@ -1,1 +1,9 @@
-<app-sample-component></app-sample-component>
+<button (click)="toggleMenu()">Toggle menu</button>
+<button (click)="startAnim()">Animate</button>
+
+<div class="mainContainer">
+  <div class="leftContainer" [class.leftContainerHidden]="!menuVisible">Menu</div>
+  <div class="rightContainer" [class.rightContainerHidden]="!menuVisible">
+    <app-sample-component [class.anim]="anim"></app-sample-component>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import {WindowResizeService} from './window-resize.service';
 import {auditTime} from 'rxjs/operators';
 import {Subscription} from 'rxjs/Subscription';
 import {DocumentAnimationEventService} from './document-animation-event.service';
+import {DocumentTransitionEventService} from './document-transition-event.service';
 
 @Directive({
   selector: '[appDtResize]'
@@ -21,7 +22,8 @@ export class DtResizeDirective implements OnInit, OnDestroy {
 
   constructor(private renderer: Renderer2,
               private windowResizeService: WindowResizeService,
-              private documentAnimationEndedService: DocumentAnimationEventService,
+              private documentAnimationEventService: DocumentAnimationEventService,
+              private documentTransitionEventService: DocumentTransitionEventService,
               private ngZone: NgZone,
               elementRef: ElementRef) {
     this.nativeElement = elementRef.nativeElement;
@@ -39,22 +41,42 @@ export class DtResizeDirective implements OnInit, OnDestroy {
 
   private init() {
     this.createWindowResizeSubscription();
-    this.createDocumentAnimationEndedSubscription();
+    this.createDocumentAnimationChangedSubscription();
+    this.createDocumentTransitionChangedSubscription();
     this.createNgZoneStableSubscription();
   }
 
   private createWindowResizeSubscription() {
     const subscription = this.windowResizeService.getResize()
       .pipe(auditTime(this.appDtResizeAuditTime))
-      .subscribe(() => this.emitEvent());
+      .subscribe(() => {
+        console.log('Window Resize');
+        console.log('Emit from Window Resize');
+        this.emitEvent();
+      });
     this.subscriptions.add(subscription);
   }
 
-  private createDocumentAnimationEndedSubscription() {
-    const subscription = this.documentAnimationEndedService.getAnimationEnded()
+  private createDocumentAnimationChangedSubscription() {
+    const subscription = this.documentAnimationEventService.getAnimationChanged()
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
+        console.log('Animation');
         if (this.hasSizeChanged()) {
+          console.log('Emit from Animation');
+          this.emitEvent();
+        }
+      });
+    this.subscriptions.add(subscription);
+  }
+
+  private createDocumentTransitionChangedSubscription() {
+    const subscription = this.documentTransitionEventService.getTransitionChanged()
+      .pipe(auditTime(this.appDtResizeAuditTime))
+      .subscribe(() => {
+        console.log('Transition');
+        if (this.hasSizeChanged()) {
+          console.log('Emit from Transition');
           this.emitEvent();
         }
       });
@@ -65,7 +87,9 @@ export class DtResizeDirective implements OnInit, OnDestroy {
     const ngZoneStableSubscription = this.ngZone.onStable
       .pipe(auditTime(this.appDtResizeAuditTime))
       .subscribe(() => {
+        console.log('Zone');
         if (this.hasSizeChanged()) {
+          console.log('Emit from Zone');
           this.emitEvent();
         }
       });

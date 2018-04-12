@@ -1,3 +1,50 @@
 button {
   margin: 20px;
 }
+
+.mainContainer {
+}
+
+.leftContainerHidden {
+  width: 0 !important;
+}
+
+.leftContainer {
+  position: fixed;
+  width: 200px;
+  height: 500px;
+  background: #888;
+  overflow: hidden;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
+}
+
+.rightContainerHidden {
+  padding-left: 0 !important;
+}
+
+.rightContainer {
+  padding-left: 200px;
+  left: 0;
+  height: 500px;
+  background: #ccc;
+  -webkit-transition: padding-left 0.5s;
+  transition: padding-left 0.5s;
+}
+
+.anim {
+  -webkit-animation-name: example;
+  -webkit-animation-duration: 4s;
+  animation-name: example;
+  animation-duration: 4s;
+}
+
+@keyframes example {
+  0% {
+    background-color: red;
+  }
+  100% {
+    background-color: red;
+    width: 300px;
+  }
+}

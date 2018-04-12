@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {TimerObservable} from 'rxjs/observable/TimerObservable';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,17 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() {
+  public anim = false;
+  public menuVisible = true;
+
+  public startAnim() {
+    this.anim = false;
+    TimerObservable.create(100).subscribe(() => {
+      this.anim = true;
+    });
+  }
+
+  public toggleMenu() {
+    this.menuVisible = !this.menuVisible;
   }
 }

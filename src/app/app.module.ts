@@ -7,6 +7,7 @@ import {DtResizeDirective} from './dt-resize.directive';
 import {SampleComponentComponent} from './sample-component/sample-component.component';
 import {WindowResizeService} from './window-resize.service';
 import {DocumentAnimationEventService} from './document-animation-event.service';
+import {DocumentTransitionEventService} from './document-transition-event.service';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {DocumentAnimationEventService} from './document-animation-event.service'
   ],
   providers: [
     WindowResizeService,
-    DocumentAnimationEventService
+    DocumentAnimationEventService,
+    DocumentTransitionEventService
   ],
   bootstrap: [AppComponent]
 })
